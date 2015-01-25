@@ -1,3 +1,3 @@
 function rowsNum = rowsNum
-    rowsNum = 80;
+    rowsNum = 140;
 end

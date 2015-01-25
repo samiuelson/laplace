@@ -39,28 +39,26 @@ iter=0;
 error=max(max(abs(V_now-V_prev)));
 % constant
 cons = 1/(2*dx^2*dy^2)*(dy^2+dx^2);
-while(error>0.5 && iter<300)%Run this until convergence
-    iter=iter+1; % Iteration counter increment
-    % Updating present iteration using 4 point Central diffrence form
-    % of Laplace equation obtained using Finite Difference method
+while(error>0.4 && iter<300)
+    iter=iter+1;
     for i=2:1:rows-1
         for j=2:1:cols-1
             V_now(i,j)=((V_now(i-1,j)+V_now(i+1,j)+V_now(i,j-1)+V_now(i,j+1))/4);
             %V_now(i,j)=get_epsilon(i,j)*cons * (dy^2*(V_now(i+1,j)+V_now(i-1,j)) + dx^2*(V_now(i,j+1)+V_now(i,j-1)));
         end
     end
-    error=max(max(abs(V_now-V_prev))); % Calculate the maximum error between previous and current iteration at all points
-    V_prev=V_now; % Updating previous iteration matrix to the last iteration performed
-        %Movie type colour scaled image plot to see how solution progresses
+    % b³¹d
+    error=max(max(abs(V_now-V_prev)));
+    V_prev=V_now; 
+    % filmik
     imagesc(V_now);colorbar;
     title(['Voltage distribution on a ',int2str(rows),' x ',int2str(cols),' grid at iteration no ',int2str(iter)],'Color','k'); 
     getframe;
 end
-%Plot the electric field distribution
+
 figure;
 [ex,ey]=gradient(V_now,2,2);
-quiver(-ex,-ey); %Quiver command creates a plot, E=-grad(V), hence the negative sign
-%
+quiver(-ex,-ey); 
 figure;
 mesh(V_now);
 
