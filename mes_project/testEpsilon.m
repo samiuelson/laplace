@@ -2,10 +2,10 @@ clear
 clc
 close all
 [rows, cols] = getMeshDimens; 
-EpsMask = zeros(rows, cols);
+EpsMask = zeros(cols, rows);
  for i=1:1:rows
     for j=1:1:cols
-        EpsMask(i,j) = getEpsilon(i,j);
+        EpsMask(j,i) = getEpsilon(i,j);
     end
  end
  figure('name','Wartoœci eps')

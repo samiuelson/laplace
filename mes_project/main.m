@@ -19,9 +19,10 @@ numberOfTriangles = numberOfSquares*2;
 %% dyskretyzacja, war. brzegowe, war. pocz¹tkowe epsilon
 V = zeros(rows, cols);
  EpsMask = zeros(rows, cols);
- for i=1:rows
-    for j=1:cols
-        EpsMask(i,j) = getEpsilon(i,j);
+EpsMask = zeros(cols, rows);
+ for i=1:1:rows
+    for j=1:1:cols
+        EpsMask(j,i) = getEpsilon(i,j);
     end
  end
  figure('name','Wartoœci eps')
