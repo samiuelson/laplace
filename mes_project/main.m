@@ -18,16 +18,15 @@ numberOfTriangles = numberOfSquares*2;
 
 %% dyskretyzacja, war. brzegowe, war. pocz¹tkowe epsilon
 V = zeros(rows, cols);
- EpsMask = zeros(rows, cols);
+EpsMask = zeros(rows, cols);
 EpsMask = zeros(cols, rows);
- for i=1:1:rows
+for i=1:1:rows
     for j=1:1:cols
         EpsMask(j,i) = getEpsilon(i,j);
     end
- end
+end
 figure('name','Wartoœci eps')
 contour(EpsMask);
-
 %
 xs = [0:1:rows-1]';
 ys = [0:1:cols-1]';
@@ -84,18 +83,3 @@ A = reshape(A',y,x);
 %
 figure('name', 'linie ekwipotencjalne')
 contour(xs, ys, A, 100);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

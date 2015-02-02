@@ -3,8 +3,8 @@
 %
 function mEps = getEpsilon(i,j) %i-wiersz, j-kolumna
     %% wartosci stale
-    e1=150;
-    e2=150;
+    e1=60;
+    e2=60;
     e3=1;
     [rows, cols] = getMeshDimens;
     [w, h] = getWidthHeight;
