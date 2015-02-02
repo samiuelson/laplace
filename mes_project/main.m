@@ -3,8 +3,8 @@ clc
 close all
 clear all
 %% sta³e
-V1 = 2;
-V2 = 1;
+V1 = 1;
+V2 = 2;
 [rows, cols] = getMeshDimens;
 [w, h] = getWidthHeight;
 dx = w/rows;
@@ -25,12 +25,12 @@ V = zeros(rows, cols);
     end
  end
  figure('name','Wartoœci eps')
- % mesh(EpsMask);
- contour(EpsMask);
+%  mesh(EpsMask);
+contour(EpsMask);
  
- V=EpsMask;
- V(1,:) = V1(1);
- V(rows,:) = V2(1);
+%  V=EpsMask;
+%  V(1,:) = V1(1);
+%  V(rows,:) = V2(1);
 
 xs = [0:1:rows-1]';
 ys = [0:1:cols-1]';
@@ -71,10 +71,10 @@ v(end-y:end) = V2(1);
 f(mod(1:y*x, y) == 0) = 0;
 f(mod(y:y*x-y, y) == 0) = 0;
 
-for i=1:size(v, 1)
-%     if(eps>)
-   v(i) = v(i) * eps(i); 
-end
+% for i=1:size(v, 1)
+% %     if(eps>)
+%    v(i) = v(i) * eps(i); 
+% end
 
 for i=1:m
    if v(i) ~= 0
@@ -89,9 +89,9 @@ figure();
 trimesh(triangles,points(:,1),points(:,2),A);
 % 
 A = reshape(A',y,x);
+%
 figure()
-
-contour(xs, ys, A);
+contour(xs, ys, A, 100);
 
 
 
