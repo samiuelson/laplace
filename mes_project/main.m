@@ -25,14 +25,10 @@ EpsMask = zeros(cols, rows);
         EpsMask(j,i) = getEpsilon(i,j);
     end
  end
- figure('name','Wartoœci eps')
-%  mesh(EpsMask);
+figure('name','Wartoœci eps')
 contour(EpsMask);
- 
-%  V=EpsMask;
-%  V(1,:) = V1(1);
-%  V(rows,:) = V2(1);
 
+%
 xs = [0:1:rows-1]';
 ys = [0:1:cols-1]';
 x = size(xs, 1);
@@ -56,7 +52,7 @@ eps = reshape(EpsMask, numberOfSquares, 1);
 epsTri = reshape(EpsMask, numberOfSquares, 1);
 epsTri = epsTri(ceil((1:2*size(epsTri,1))/2), :); % duplicate rows
 
-% H matrix
+% H matrix - macierz stanu
 H = zeros(m);
 for i=1:size(triangles,1)
     ns = triangles(i,:);
@@ -66,16 +62,10 @@ for i=1:size(triangles,1)
 end
 
 v = zeros(m, 1);
-% v = reshape(V, m, 1);
 v(1:y) = V1(1);%1;
 v(end-y:end) = V2(1);
-f(mod(1:y*x, y) == 0) = 0;
-f(mod(y:y*x-y, y) == 0) = 0;
-
-% for i=1:size(v, 1)
-% %     if(eps>)
-%    v(i) = v(i) * eps(i); 
-% end
+v(mod(1:y*x, y) == 0) = 0;
+v(mod(y:y*x-y, y) == 0) = 0;
 
 for i=1:m
    if v(i) ~= 0
@@ -84,14 +74,15 @@ for i=1:m
    end
 end
 
-%% rozwi¹zanie uk³adu równañ
+%% rozwi¹zanie uk³adu równañ i wizualizacja
 A = H\v;
-figure();
+% 
+figure('name', 'Rozwi¹zanie - wizualizacja rozk³adu potencja³u');
 trimesh(triangles,points(:,1),points(:,2),A);
 % 
 A = reshape(A',y,x);
 %
-figure()
+figure('name', 'linie ekwipotencjalne')
 contour(xs, ys, A, 100);
 
 
