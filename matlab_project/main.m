@@ -13,11 +13,11 @@ rows=rowsNum;
 get_height;
 get_width;
 % dx, dy
-dx = get_width / colsNum;
-dy = get_height / rowsNum;
+% dx = get_width / colsNum;
+% dy = get_height / rowsNum;
 % wymuszenia na brzegach
-V1 = 1;
-v2 = 2;
+% V1 = 1;
+% v2 = 2;
 % macierz wartoœci V w pktach siatki
 V_now = zeros(rows, cols);
 V_prev = zeros(rows, cols);
@@ -30,15 +30,13 @@ end
 % warunki brzegowe
 V_now(1,1:cols) = 0;
 V_now(rows,1:cols) = 0;
-V_now(1:rows, 1) = 1 * V_now(1:rows, 1);
-V_now(1:rows, cols) = 2 * V_now(1:rows, cols);
+V_now(1:rows, 1) = -2 * V_now(1:rows, 1);
+V_now(1:rows, cols) = 5 * V_now(1:rows, cols);
 
 % licznik iteracji
 iter=0;
 % wartosc bledu
 error=max(max(abs(V_now-V_prev)));
-% constant
-cons = 1/(2*dx^2*dy^2)*(dy^2+dx^2);
 while(error>0.4 && iter<300)
     iter=iter+1;
     for i=2:1:rows-1
@@ -56,9 +54,9 @@ while(error>0.4 && iter<300)
     getframe;
 end
 
-figure;
-[ex,ey]=gradient(V_now,2,2);
-quiver(-ex,-ey); 
+% figure;
+% [ex,ey]=gradient(V_now,2,2);
+% quiver(-ex,-ey); 
 figure;
 mesh(V_now);
 

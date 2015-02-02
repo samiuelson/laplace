@@ -1,3 +1,3 @@
 function colsNum = colsNum
-    colsNum = 140;
+    colsNum = 80;
 end
